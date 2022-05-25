@@ -7,7 +7,7 @@ export function globalValidate<T>(
   exit: (code?: number) => never,
   chalk = chalkFallback(),
 ): T | never {
-  if (result.type === 'ok') {
+  if (result.ok) {
     return result.args
   }
 

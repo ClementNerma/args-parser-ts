@@ -1,6 +1,6 @@
 import { ArgSchema, ArgParserError } from './schema'
 
-export type ArgParsingResult<T> = { type: 'ok'; args: T } | { type: 'error'; error: ArgParserError }
+export type ArgParsingResult<T> = { ok: true; args: T } | { ok: false; error: ArgParserError }
 
 /* prettier-ignore */ export function validateArgs<_K extends string, _O extends { [key in _K]: A }, A>(schema: { [key in keyof _O]: ArgSchema<_O[key]> }, args: string[]): ArgParsingResult<_O>;
 /* prettier-ignore */ export function validateArgs<_K extends string, _O extends { [key in _K]: A | B }, A, B>(schema: { [key in keyof _O]: ArgSchema<_O[key]> }, args: string[]): ArgParsingResult<_O>;
@@ -40,7 +40,7 @@ export function validateArgs<_K extends string, _O extends { [key in _K]: _V }, 
   const out = new Map<string, unknown>()
 
   const err = <T>(error: ArgParserError): ArgParsingResult<T> => ({
-    type: 'error',
+    ok: false,
     error,
   })
 
@@ -209,7 +209,7 @@ export function validateArgs<_K extends string, _O extends { [key in _K]: _V }, 
   const untypedArgs = Object.fromEntries(out)
 
   return {
-    type: 'ok',
+    ok: true,
     // @ts-ignore
     args: untypedArgs,
   }
