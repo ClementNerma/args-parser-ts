@@ -2,7 +2,7 @@ import { Chalk } from './chalk'
 import { globalValidate } from './global'
 import { generateHelpText } from './help'
 import { ArgSchema } from './schema'
-import { validate } from './validator'
+import { validateArgs } from './validator'
 
 export * from './schema'
 export * from './validator'
@@ -24,5 +24,5 @@ export function parseArgs<_K extends string, _O extends { [key in _K]: _V }, _V>
     return exit()
   }
 
-  return globalValidate(validate(schema, args), exit, chalk)
+  return globalValidate(validateArgs(schema, args), exit, chalk)
 }
