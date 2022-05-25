@@ -4,7 +4,7 @@ import { ArgParsingResult } from './validator'
 
 export function globalValidate<T>(
   result: ArgParsingResult<T>,
-  exit: (code: number) => never,
+  exit: (code?: number) => never,
   chalk = chalkFallback(),
 ): T | never {
   if (result.type === 'ok') {
