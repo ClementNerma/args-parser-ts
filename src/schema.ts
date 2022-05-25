@@ -15,12 +15,10 @@ export type ArgFlagCombination =
 export type ArgType<T> =
   | (T extends boolean ? { type: 'boolean' } : never)
   | (T extends Array<infer U> ? { type: 'array'; of: ArgCustomType<U> } : never)
-  | (T extends null
-      ? never
-      : {
-          type: 'other'
-          customArgType: ArgCustomType<T>
-        })
+  | {
+      type: 'other'
+      customArgType: ArgCustomType<T>
+    }
 
 export type ArgCustomType<T> = {
   typename: string
