@@ -1,21 +1,10 @@
+import { chalkFallback } from './chalk'
 import { ArgParsingResult, ArgSchema } from './schema'
 
 export function globalValidate<T>(
   result: ArgParsingResult<T>,
   exit: (code: number) => never,
-  chalk: {
-    yellowBright: (message: string) => string
-    redBright: (message: string) => string
-    greenBright: (message: string) => string
-    cyanBright: (message: string) => string
-    magentaBright: (message: string) => string
-  } = {
-    yellowBright: (message) => message,
-    redBright: (message) => message,
-    greenBright: (message) => message,
-    cyanBright: (message) => message,
-    magentaBright: (message) => message,
-  },
+  chalk = chalkFallback(),
 ): T | never {
   if (result.type === 'ok') {
     return result.args
