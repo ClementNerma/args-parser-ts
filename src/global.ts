@@ -1,5 +1,6 @@
 import { chalkFallback } from './chalk'
-import { ArgParsingResult, ArgSchema } from './schema'
+import { ArgSchema } from './schema'
+import { ArgParsingResult } from './validator'
 
 export function globalValidate<T>(
   result: ArgParsingResult<T>,

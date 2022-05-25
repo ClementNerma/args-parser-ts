@@ -51,5 +51,3 @@ export type ArgParserError =
     }
   | { type: 'missingArgument'; argName: string; schema: ArgSchema<unknown> }
   | { type: 'tooManyPositionalArguments'; expected: number }
-
-export type ArgParsingResult<T> = { type: 'ok'; args: T } | { type: 'error'; error: ArgParserError }

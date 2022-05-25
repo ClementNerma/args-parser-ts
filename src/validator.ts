@@ -1,4 +1,6 @@
-import { ArgSchema, ArgParsingResult, ArgParserError } from './schema'
+import { ArgSchema, ArgParserError } from './schema'
+
+export type ArgParsingResult<T> = { type: 'ok'; args: T } | { type: 'error'; error: ArgParserError }
 
 /* prettier-ignore */ export function validate<_K extends string, _O extends { [key in _K]: A }, A>(schema: { [key in keyof _O]: ArgSchema<_O[key]> }, args: string[]): ArgParsingResult<_O>;
 /* prettier-ignore */ export function validate<_K extends string, _O extends { [key in _K]: A | B }, A, B>(schema: { [key in keyof _O]: ArgSchema<_O[key]> }, args: string[]): ArgParsingResult<_O>;
