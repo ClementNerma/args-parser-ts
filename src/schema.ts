@@ -5,13 +5,12 @@ export type ArgSchema<T> = Readonly<{
   defaultValue: { value: T } | null
 }>
 
-export type ArgPos =
-  | { type: 'positional' }
-  | ({ type: 'flag' } & (
-      | { short: string; long: string }
-      | { short: null; long: string }
-      | { short: string; long: null }
-    ))
+export type ArgPos = { type: 'positional' } | ({ type: 'flag' } & ArgFlagCombination)
+
+export type ArgFlagCombination =
+  | { short: string; long: string }
+  | { short: null; long: string }
+  | { short: string; long: null }
 
 export type ArgType<T> =
   | (T extends boolean ? { type: 'boolean' } : never)
